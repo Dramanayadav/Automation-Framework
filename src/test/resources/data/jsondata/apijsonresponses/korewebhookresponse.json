@@ -1,0 +1,15 @@
+{
+    "data": [
+        {
+            "type": "text",
+            "val": "Please provide *Employee Id* to view and update employee details: ",
+            "createdOn": "2023-11-01T06:17:08.478Z",
+            "messageId": "ms-7a8c50d0-4601-5161-833c-ebca1168fd38"
+        }
+    ],
+    "_v": "v2",
+    "sessionId": "6541ed639cdc7890201383fb",
+    "traversedIntents": [
+        "Maintain Employee Details"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "user" : {
+     
+      "lockedoutuser" : "locked_out_user",
+      "problemuser" : "problem_user",
+      "standarduser" : "standard_user",
+      "defaultpasswordforallusers" : "secret_sauce"
+   
+  }
+
+}

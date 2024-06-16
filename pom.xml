@@ -1,0 +1,283 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>automationframeworksupport</groupId>
+	<artifactId>automationframeworksupport</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>automationframeworksupport</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jre.level>17</jre.level>
+		<jdk.level>17</jdk.level>
+		<app.env>${test.env}</app.env>
+		<selenium-version>4.14.1</selenium-version>
+		<selenium.timeout>${selenium_timeout}</selenium.timeout>
+		<browser.name>${browser_name}</browser.name>
+		<test.url>${url_under_test}</test.url>
+		<tunnel.id>${CLOUD_TUNNEL_ID}</tunnel.id>
+		<sauceHub.url>${CLOUD_HUB_URL}</sauceHub.url>
+		<cloud.platform.name>${could_platform_name}</cloud.platform.name>
+		<appeal.url>${appeal_url}</appeal.url>
+		<suite.name>${project.name}</suite.name>
+		<test.name>${project.name}</test.name>
+		<cloud.device.ios>${CLOUD_IOS_MOBILE_DEVICES}</cloud.device.ios>
+		<cloud.device.android>${CLOUD_ANDROID_MOBILE_DEVICES}</cloud.device.android>
+		<cloud.device.desktop.platform.version>${could_devices_desktop_platform_version}</cloud.device.desktop.platform.version>
+		<cloud.mobile.device.name>${CLOUD_MOBILE_DEVICE_NAME}</cloud.mobile.device.name>
+		<cloud.device.desktop.platform.version>${CLOUD_DEVICES_MOBILE_PLATFORM_VERSION}</cloud.device.desktop.platform.version>
+		<lombok.version>1.18.28</lombok.version>
+		<maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
+		<mysql-connector-j-version>8.1.0</mysql-connector-j-version>
+		<zap-clientapi-version>1.12.0</zap-clientapi-version>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- Compiler plug-in -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${jdk.level}</source>
+					<target>${jdk.level}</target>
+					<fork>true</fork>
+					<!-- Add these compilerArgs to fix the error -->
+					<compilerArgs>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+						<arg>
+							-J--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED</arg>
+					</compilerArgs>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<!-- Below plug-in is used to execute tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin-version}</version>
+				<configuration>
+					<argLine>-Xmx1024m</argLine>
+					<suiteXmlFiles>
+						<suiteXmlFile>${suiteXml}</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<finalName>ProjectJARs/project</finalName>
+				</configuration>
+
+			</plugin>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+			<!-- default lifecycle, jar packaging: see
+			https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+			</plugin>
+			<!-- site lifecycle, see
+			https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.7.1</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.reactivestreams</groupId>
+			<artifactId>reactive-streams</artifactId>
+			<version>1.0.3</version>
+			<!--<scope>system</scope>
+			<systemPath>${basedir}/lib/extent-report/reactive-streams-1.0.3.jar</systemPath>-->
+		</dependency>
+
+		<dependency>
+			<groupId>io.reactivex.rxjava3</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>3.0.4</version>
+			<!--<scope>system</scope>-->
+			<!--<systemPath>${basedir}/lib/extent-report/rxjava-3.0.4.jar</systemPath>-->
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.30</version>
+			<!--<scope>system</scope>
+			<systemPath>${basedir}/lib/extent-report/freemarker-2.3.30.jar</systemPath>-->
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>5.0.8</version>
+			<!--	<scope>system</scope>
+			<systemPath>${basedir}/lib/extent-report/extentreports-5.0.8.jar</systemPath>-->
+		</dependency>
+
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>8.5.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.5.3</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.17</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.0.6</version>
+			 <!--<scope>test</scope> -->
+		</dependency>
+
+<dependency>
+<groupId>io.rest-assured</groupId>
+<artifactId>json-schema-validator</artifactId>
+<version>4.2.0</version>
+<!--<scope>test</scope>-->
+</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.7.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!--<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>20090211</version>
+</dependency>-->
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20230227</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>${mysql-connector-j-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.zaproxy</groupId>
+			<artifactId>zap-clientapi</artifactId>
+			<version>${zap-clientapi-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.influxdb</groupId>
+			<artifactId>influxdb-client-java</artifactId>
+			<version>6.10.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.applitools/eyes-selenium-java5 -->
+<dependency>
+    <groupId>com.applitools</groupId>
+    <artifactId>eyes-selenium-java5</artifactId>
+    <version>5.64.8</version>
+</dependency>
+
+
+	</dependencies>
+</project>

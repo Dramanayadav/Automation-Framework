@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Inventory tests" verbose="2">
+	<listeners>
+		<listener class-name="com.frameworksupport.util.retry.AnnotationTransformer" />
+		<listener class-name="com.frameworksupport.influxdb.core.InfluxDBListener" />
+	</listeners>
+
+	<test name="Inventory Item Details tests">
+	    <parameter name="CLOUD_MOBILE_DEVICE_NAME" value="Android GoogleAPI Emulator" />
+	    <parameter name="CLOUD_DEVICES_MOBILE_PLATFORM_VERSION" value="13.0" />
+		<parameter name="browser_name" value="androidChrome-mobile" />
+		<parameter name="closebrowser_after_test" value="true" />
+		<parameter name="run_on_grid" value="true" />
+		<parameter name="testrail_run_id" value="2" />
+		<parameter name="retry_attempt" value="1" />
+		<classes>
+			<class name="com.swaglabs.web.testplan.Inventory_TestPaln" />
+		</classes>
+
+	</test>
+
+
+</suite>

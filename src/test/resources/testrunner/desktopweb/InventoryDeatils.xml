@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Inventory tests" verbose="2" data-provider-thread-count="5" >
+	<listeners>
+		<listener class-name="com.frameworksupport.util.retry.AnnotationTransformer" />
+		<listener class-name="com.frameworksupport.influxdb.core.InfluxDBListener" />
+	</listeners>
+
+	<test name="Inventory Item Details tests">
+		<parameter name="browser_name" value="edge" />
+		<parameter name="closebrowser_after_test" value="true" />
+		<parameter name="run_on_grid" value="false" />
+		<parameter name="could_devices_desktop_platform_version" value="Windows 10" />
+		<parameter name="testrail_run_id" value="2" />
+		<parameter name="retry_attempt" value="1" />
+		<classes>
+			<class name="com.swaglabs.web.testplan.Inventory_TestPaln" />
+		</classes>
+
+	</test>
+</suite>

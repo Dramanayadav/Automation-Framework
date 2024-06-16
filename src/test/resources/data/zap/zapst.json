@@ -1,0 +1,9 @@
+{
+    "zapsetup":
+     {
+      "zap_proxy_address":"localhost",
+      "zap_proxy_port":"8080",
+      "zap_api_key":"lk77am4u68k5hsherj8jrm625u"
+     }
+     
+ }

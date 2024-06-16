@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="regression tests" verbose="2" >
+	<listeners>
+		<listener class-name="com.frameworksupport.util.retry.AnnotationTransformer" />
+	</listeners>
+
+	<test name="regression tests" parallel="methods" thread-count="10" >
+		<parameter name="browser_name" value="chrome" />
+		<parameter name="closebrowser_after_test" value="true" />
+		<parameter name="run_on_grid" value="false" />
+		<parameter name="testrail_run_id" value="2" />
+		<parameter name="retry_attempt" value="1" />
+		<classes >
+			<class name="com.swaglabs.web.testplan.SwagLabsLogin_TestPlan" />
+			<class name="com.swaglabs.web.testplan.Inventory_TestPaln" />
+		</classes>
+
+	</test>
+
+
+</suite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	  <listeners>
+		<listener
+			class-name="com.frameworksupport.util.retry.AnnotationTransformer" />
+	</listeners>
+	<test thread-count="2" name="Test">
+    <classes>
+      <class name="com.database.testplan.DatabaseTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

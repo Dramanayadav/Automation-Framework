@@ -1,0 +1,11 @@
+
+{
+    "dbConnection":
+     {
+      "db_conn":"com.mysql.cj.jdbc.Driver",
+      "db_url":"jdbc:mysql://localhost:3306/demo3",
+      "db_username":"root",
+      "db_password":"Password@7725"
+     }
+     
+ }

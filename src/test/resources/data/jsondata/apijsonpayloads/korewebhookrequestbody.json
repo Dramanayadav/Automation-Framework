@@ -1,0 +1,9 @@
+{
+    "message": {
+        "type": "text",
+        "val": "maintain employee details"
+    },
+    "from": {
+        "id": "sampath.shyamala@ratnaglobaltech.com"
+    }
+}
